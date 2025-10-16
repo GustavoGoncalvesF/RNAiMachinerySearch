@@ -1,6 +1,11 @@
 # Script utilizado para testar o pacote
 
+<<<<<<< HEAD
 # Chamando tabela 1 para testes
+  arquivo <- file.path("C:/Users/gugam/Documents/RNAseq/trinotate_annotation_report.xls")
+=======
+# Chamando tabela para testes
+>>>>>>> 2310d68 (Adjust line text.)
   arquivo <- system.file("extdata", "tabela.teste2.xls", package = "rnaiMachinerySearch")
   tabela <- read.table(arquivo,
                       sep = "\t",

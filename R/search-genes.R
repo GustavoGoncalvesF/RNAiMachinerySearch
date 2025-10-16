@@ -24,7 +24,7 @@ search.rnai <- function(tabela, coluna) {
   resultados <- lapply(names(categorias), function(cat) {
     padroes <- categorias[[cat]]
     padroes_esc <- vapply(padroes, function(x) paste0("\\Q", x, "\\E"), FUN.VALUE = "")
-    pattern <- paste0("(^|[^A-Za-z0-9])(", paste(padroes_esc, collapse = "|"), ")([^A-Za-z0-9]|$)")
+    pattern <- paste0("(^|[^A-Za-z0-9])(", paste(padroes_esc, collapse = "|"), ")([^A-Za-z0-9]|$)") #< filtra para que a anotação seja exatamente igual ao gene name
     linhas <- grepl(pattern, col_data, ignore.case = TRUE, perl = TRUE)
     subset <- tabela[linhas, , drop = FALSE]
 
@@ -38,7 +38,7 @@ search.rnai <- function(tabela, coluna) {
   colnames(resultado_pre) <- c("GeneID", "ProteinAnnotation", "Category") #< renomeia as colunas
 
   resultado_pre$ProteinAnnotation <- sub('.*?([A-Za-z0-9_]+)_([A-Za-z0-9_]+).*', '\\1_\\2', resultado_pre$ProteinAnnotation) #< limpa a coluna proteinAnnotation mantendo só a UniProt name
-  resultado_final <- dplyr::distinct(resultado_pre, ProteinAnnotation, .keep_all = TRUE) #< limpa eventuais contigs duplicados
+  resultado_final <- dplyr::distinct(resultado_pre, ProteinAnnotation, .keep_all = TRUE) #< filtra eventuais contigs duplicados
 
 
     return(resultado_final)
