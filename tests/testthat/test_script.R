@@ -12,5 +12,6 @@ library (readxl)
 # Testando a busca
 resultado <- search.rnai(tabela,"sprot_Top_BLASTX_hit")
 
-
+# Testando print report
+report.machinery(resultado)
 
