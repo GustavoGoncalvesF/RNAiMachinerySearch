@@ -1,0 +1,5 @@
+report.machinery <- function(tabela) {
+
+
+
+}

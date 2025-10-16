@@ -10,4 +10,7 @@ library (readxl)
                       comment.char = "",
                       fill = TRUE)
 # Testando a busca
-resultado <- buscar_rnai(tabela,"sprot_Top_BLASTX_hit")
+resultado <- search.rnai(tabela,"sprot_Top_BLASTX_hit")
+
+
+

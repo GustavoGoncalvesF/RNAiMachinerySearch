@@ -2,7 +2,7 @@
 
 #Esta função identifica os genes relacionados à maquinaria de RNAi
 
-buscar_rnai <- function(tabela, coluna) {
+search.rnai <- function(tabela, coluna) {
   #Lista de genes da maquinaria
   categorias <- list(
    "Dicer family" = c("DCR1","DCR2","RNC"),
@@ -32,7 +32,8 @@ buscar_rnai <- function(tabela, coluna) {
     subset$Categoria <- cat  # adiciona coluna com o nome da categoria
     return(subset)
   })
-  # Unir tudo em um único data frame
+  # Unir tudo em um único data frame e renomear as colunas
   resultado_final <- dplyr::select(do.call(rbind, resultados), "X.gene_id","sprot_Top_BLASTX_hit","Categoria")
+  colnames(resultado_final) <- c("GeneID", "ProteinAnnotation", "Category")
     return(resultado_final)
 }
