@@ -1,0 +1,11 @@
+Package: rnaiMachinerySearch
+Title: RNAi Machinery Identifier
+Version: 0.1.0
+Authors@R: 
+    person("Gustavo", "Gonçalves", , "gustavoffg@estudante.ufscar.br", role = c("aut", "cre"))
+Description: Identify RNAi machinery core genes in annotate tables.
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
