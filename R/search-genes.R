@@ -1,6 +1,7 @@
 # Buscar os genes da maquinaria de RNAi a partir da tabela de anotação vinda em data.frame
 
 #Esta função identifica os genes relacionados à maquinaria de RNAi
+library(stringr)
 
 search.rnai <- function(tabela, coluna) {
   #Lista de genes da maquinaria
@@ -33,7 +34,12 @@ search.rnai <- function(tabela, coluna) {
     return(subset)
   })
   # Unir tudo em um único data frame e renomear as colunas
-  resultado_final <- dplyr::select(do.call(rbind, resultados), "X.gene_id","sprot_Top_BLASTX_hit","Categoria")
-  colnames(resultado_final) <- c("GeneID", "ProteinAnnotation", "Category")
+  resultado_pre <- dplyr::select(do.call(rbind, resultados), "X.gene_id","sprot_Top_BLASTX_hit","Categoria")
+  colnames(resultado_pre) <- c("GeneID", "ProteinAnnotation", "Category") #< renomeia as colunas
+
+  resultado_pre$ProteinAnnotation <- sub('.*?([A-Za-z0-9_]+)_([A-Za-z0-9_]+).*', '\\1_\\2', resultado_pre$ProteinAnnotation) #< limpa a coluna proteinAnnotation mantendo só a UniProt name
+  resultado_final <- dplyr::distinct(resultado_pre, ProteinAnnotation, .keep_all = TRUE) #< limpa eventuais contigs duplicados
+
+
     return(resultado_final)
 }
