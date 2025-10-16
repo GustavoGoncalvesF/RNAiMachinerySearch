@@ -16,5 +16,3 @@ report.machinery(resultado)
 
 # Testando plotly
 plot_sunburst(resultado)
-
-resultado$ProteinAnnotation <- sub('^"|\\^.*', '', resultado$ProteinAnnotation)
