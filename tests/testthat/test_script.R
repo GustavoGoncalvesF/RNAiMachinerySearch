@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-# Script utilizado para testar o pacote #vgh
-=======
 # Script utilizado para testar o pacote #vgss
->>>>>>> 99866699dc0dc3c78e815c150ccf092c2d2a7cf0
+
 
 # Chamando tabela 1 para testes
   arquivo <- file.path("C:/Users/gugam/Documents/RNAseq/trinotate_annotation_report.xls")
