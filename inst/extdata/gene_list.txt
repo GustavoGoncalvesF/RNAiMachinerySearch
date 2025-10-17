@@ -1,0 +1,28 @@
+Category,Gene,Function
+Dicer family,DCR1,generates miRNAs by processing pre-miRNA
+Dicer family,DCR2,responsible for producing siRNAs from long dsRNA
+Dicer family,RNC,involved in the initial step of miRNA biogenesis
+Argonautes,AGO1,main component of the RISC complex that binds to a short guide RNA such as miRNA or siRNA
+Argonautes,AGO2,induces potent and specific gene silencing
+Argonautes,AGO3,acts via the piwi-interacting RNA (piRNA) metabolic process
+Argonautes,PIWI,form effector complexes known as piRNA-induced silencing complexes which repress transposons via transcriptional or posttranscriptional mechanisms
+Argonautes,AUB,directly binds piRNAs
+Argonautes,SPNE,acts via the piRNA metabolic process which mediates the repression of transposable elements during meiosis by forming complexes composed of piRNAs and Piwi and govern the methylation and subsequent repression of transposons
+dsRNA binding,LOQS,double-stranded RNA-binding protein
+dsRNA binding,DGCR8,required to process primary miRNA transcripts (pri-miRNAs) to release precursor miRNA
+dsRNA transport/uptake,SID1,channel for the transport of dsRNA between cells
+dsRNA transport/uptake,SID2,mediate endocytic uptake of dsRNA ingested from the environment
+dsRNA transport/uptake,CLH,endocytotic process
+dsRNA transport/uptake,INX2,involved in forming intercellular channels
+dsRNA transport/uptake,EPN,binds to membranes enriched in phosphatidylinositol 4.5-bisphosphate
+dsRNA transport/uptake,SCRB1,mediated the uptake of exogenous dsRNAs in the induction of the RNAi responses
+Auxiliary RISC-associated,ARMI,required for the assembly of the RISC complex
+Auxiliary RISC-associated,DDX3,required for cellular function larval growth for male and female fertility and for RNAi
+Auxiliary RISC-associated,CLP1,phosphorylates the 5-terminus of exogenously introduced siRNAs which is a necessary prerequisite for their incorporation into the RISC
+Auxiliary RISC-associated,GAWKY,silences both polyadenylated and deadenylated mRNAs
+Auxiliary RISC-associated,SND1,translation regulation throught its association with the RISC
+Auxiliary RISC-associated,TSN,act as an activator of RISC by facilitating endonucleolytic cleavage of the siRNA passenger strand
+Auxiliary RISC-associated,TSNAX,endonuclease involved in the activation of the RISC
+Auxiliary RISC-associated,MAEL,piRNA and miRNA metabolic processes
+Auxiliary RISC-associated,HENMT,adds a 2-O-methyl group at the 3-end of selected small RNAs
+Auxiliary RISC-associated,STAU1,binds dsRNA (regardless of the sequence) and tubulin

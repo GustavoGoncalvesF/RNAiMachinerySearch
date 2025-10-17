@@ -5,13 +5,9 @@ library(stringr)
 
 search.rnai <- function(tabela, coluna) {
   #Lista de genes da maquinaria
-  categorias <- list(
-   "Dicer family" = c("DCR1","DCR2","RNC"),
-   "Argonautes" = c("AGO1","AGO2","AGO3","PIWI","AUB","SPNE"),
-   "dsRNA binding" = c("LOQS","DGCR8"),
-   "dsRNA transport/uptake" = c("SID1","SID2","CLH","INX2","EPN","SCRB1"),
-   "Auxiliary RISC-associated" = c("ARMI","DDX3","CLP1","GAWKY","SND1","TSN","TSNAX","MAEL","HENMT","STAU1")
-  )
+  categorias_df <- read.table(system.file("extdata","gene_list.txt", package = "rnaiMachinerySearch"), sep = ",", header = TRUE, stringsAsFactors = FALSE)
+  categorias <- split(categorias_df$Gene, categorias_df$Category)
+
   #Extraindo a coluna de interesse
   col_data <- tabela[[coluna]]
 
@@ -40,6 +36,8 @@ search.rnai <- function(tabela, coluna) {
   resultado_pre$ProteinAnnotation <- sub('.*?([A-Za-z0-9_]+)_([A-Za-z0-9_]+).*', '\\1_\\2', resultado_pre$ProteinAnnotation) #< limpa a coluna proteinAnnotation mantendo só a UniProt name
   resultado_final <- dplyr::distinct(resultado_pre, ProteinAnnotation, .keep_all = TRUE) #< filtra eventuais contigs duplicados
 
+  resultado_final$GeneShort <- sub("_.*", "", resultado_final$ProteinAnnotation)
+  resultado_final$Function <- categorias_df$Function[match(resultado_final$GeneShort, categorias_df$Gene)]
 
     return(resultado_final)
 }
