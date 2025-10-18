@@ -1,43 +1,45 @@
-# Buscar os genes da maquinaria de RNAi a partir da tabela de anotação vinda em data.frame
+# Searching the core genes of RNAi machinery from a annotation table coming in data.frame format
 
-#Esta função identifica os genes relacionados à maquinaria de RNAi
+# This function identify the genes based in they UniProt names
 library(stringr)
 
-search.rnai <- function(tabela, coluna) {
-  #Lista de genes da maquinaria
-  categorias_df <- read.table(system.file("extdata","gene_list.txt", package = "rnaiMachinerySearch"), sep = ",", header = TRUE, stringsAsFactors = FALSE)
-  categorias <- split(categorias_df$Gene, categorias_df$Category)
+search.rnai <- function(annotation_df, column) {
+  # Catalog of machinery's core genes
+  gene_list <- read.table(system.file("extdata","gene_list.txt", package = "rnaiMachinerySearch"), sep = ",", header = TRUE, stringsAsFactors = FALSE)
+  catalog <- split(gene_list$Gene, gene_list$Category)
 
-  #Extraindo a coluna de interesse
-  col_data <- tabela[[coluna]]
+  # Pick up the functional annotation column
+  col_data <- annotation_df[[column]]
 
-  #Informando erro caso coluna esteja vazia
+  # Input validation
   if (is.null(col_data)) {
-    stop("A coluna especificada não foi encontrada na tabela.")
+    stop("Cannot find the speficied column in the dataframe, please check the name and try again.")
   }
 
-  #Procurando correspondências
-  resultados <- lapply(names(categorias), function(cat) {
-    padroes <- categorias[[cat]]
-    padroes_esc <- vapply(padroes, function(x) paste0("\\Q", x, "\\E"), FUN.VALUE = "")
-    pattern <- paste0("(^|[^A-Za-z0-9])(", paste(padroes_esc, collapse = "|"), ")([^A-Za-z0-9]|$)") #< filtra para que a anotação seja exatamente igual ao gene name
-    linhas <- grepl(pattern, col_data, ignore.case = TRUE, perl = TRUE)
-    subset <- tabela[linhas, , drop = FALSE]
+  # Looking for matches between catalog and annotations
+  matches <- lapply(names(catalog), function(cat) {
+    patterns <- catalog[[cat]]
+    patterns_esc <- vapply(patterns, function(x) paste0("\\Q", x, "\\E"), FUN.VALUE = "")
+    type <- paste0("(^|[^A-Za-z0-9])(", paste(patterns_esc, collapse = "|"), ")([^A-Za-z0-9]|$)") #< ensures the annotation be exactly the same as gene name
+    lines <- grepl(type, col_data, ignore.case = TRUE, perl = TRUE)
+    subset <- annotation_df[lines, , drop = FALSE]
 
-    if (nrow(subset) == 0) return(NULL)  # <- ignora categorias sem resultados
+    if (nrow(subset) == 0) return(NULL)  # Ignore categories without matches
 
-    subset$Categoria <- cat  # adiciona coluna com o nome da categoria
+    subset$Category <- cat  # Add categories column
     return(subset)
   })
-  # Unir tudo em um único data frame e renomear as colunas
-  resultado_pre <- dplyr::select(do.call(rbind, resultados), "X.gene_id","sprot_Top_BLASTX_hit","Categoria")
-  colnames(resultado_pre) <- c("GeneID", "ProteinAnnotation", "Category") #< renomeia as colunas
+  # Join every single one match in a unique data frame and rename columns
+  partial_result <- dplyr::select(do.call(rbind, matches), "X.gene_id","sprot_Top_BLASTX_hit","Category")
+  colnames(partial_result) <- c("GeneID", "ProteinAnnotation", "Category")
 
-  resultado_pre$ProteinAnnotation <- sub('.*?([A-Za-z0-9_]+)_([A-Za-z0-9_]+).*', '\\1_\\2', resultado_pre$ProteinAnnotation) #< limpa a coluna proteinAnnotation mantendo só a UniProt name
-  resultado_final <- dplyr::distinct(resultado_pre, ProteinAnnotation, .keep_all = TRUE) #< filtra eventuais contigs duplicados
+  # Filtering the annotation column to keep only UniProt name and removing duplicates contigs results
+  partial_result$ProteinAnnotation <- sub('.*?([A-Za-z0-9_]+)_([A-Za-z0-9_]+).*', '\\1_\\2', partial_result$ProteinAnnotation)
+  rnai_hits <- dplyr::distinct(partial_result, ProteinAnnotation, .keep_all = TRUE)
 
-  resultado_final$GeneShort <- sub("_.*", "", resultado_final$ProteinAnnotation)
-  resultado_final$Function <- categorias_df$Function[match(resultado_final$GeneShort, categorias_df$Gene)]
+  # Add functions column based in genes short name
+  rnai_hits$GeneShort <- sub("_.*", "", rnai_hits$ProteinAnnotation)
+  rnai_hits$Function <- gene_list$Function[match(rnai_hits$GeneShort, gene_list$Gene)]
 
-    return(resultado_final)
+    return(rnai_hits)
 }
