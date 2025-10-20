@@ -1,7 +1,9 @@
 # Script used to test the execution flow of the package
 
 # Input full table
-  file <- file.path("C:/Users/gugam/Documents/RNAseq/trinotate_annotation_report.xls")
+  file <- file.path("C:/Users/gugam/Documents/Data/mahanarva_annotation_report.xls")
+  file <- file.path("C:/Users/gugam/Documents/Data/centropomus_annotation_report.tsv")
+  file <- file.path("C:/Users/gugam/Documents/Data/dugesia_annotation_report.xls")
 
 # Input partial tables
   file <- system.file("extdata", "partial_table1.xls", package = "rnaiMachinerySearch")

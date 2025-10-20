@@ -30,7 +30,7 @@ search.rnai <- function(annotation_df, column) {
     return(subset)
   })
   # Join every single one match in a unique data frame and rename columns
-  partial_result <- dplyr::select(do.call(rbind, matches), "X.gene_id","sprot_Top_BLASTX_hit","Category")
+  partial_result <- dplyr::select(do.call(rbind, matches), 1,column,"Category")
   colnames(partial_result) <- c("GeneID", "ProteinAnnotation", "Category")
 
   # Filtering the annotation column to keep only UniProt name and removing duplicates contigs results
@@ -41,5 +41,7 @@ search.rnai <- function(annotation_df, column) {
   rnai_hits$GeneShort <- sub("_.*", "", rnai_hits$ProteinAnnotation)
   rnai_hits$Function <- gene_list$Function[match(rnai_hits$GeneShort, gene_list$Gene)]
 
+  report.machinery(rnai_hits)
     return(rnai_hits)
+
 }
