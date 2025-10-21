@@ -1,6 +1,6 @@
 # Script used to test the execution flow of the package
 
-# Input full table
+# Input full tables
 file1 <- file.path("C:/Users/gugam/Documents/Data/mahanarva_annotation_report.xls")
 file1 <- file.path("C:/Users/gugam/OneDrive/Documentos/Data/mahanarva_annotation_report.xls")
 file1 <- file.path("C:/Users/gugam/Documents/Data/centropomus_annotation_report.tsv")
