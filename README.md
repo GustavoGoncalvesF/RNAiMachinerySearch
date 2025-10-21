@@ -5,9 +5,9 @@ rnaiMachinerySearch is an R package designed to facilitate the screening of core
 ![Logo](https://github.com/GustavoGoncalvesF/rnaiMachinerySearch/blob/master/man/figures/logo.png)
 
 ## Installation
-<pre> #Required packages
+<pre>```r #Required packages
 install.packages("devtools")
 install.packages("BiocManager")
 
 # Install rnaiMachinerySearchs
-working.in </pre>
+working.in ``` </pre>
