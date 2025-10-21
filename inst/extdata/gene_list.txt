@@ -18,6 +18,8 @@ dsRNA transport/uptake,SID1,channel for the transport of dsRNA between cells
 dsRNA transport/uptake,SID2,mediate endocytic uptake of dsRNA ingested from the environment
 dsRNA transport/uptake,SIDT2,mediate endocytic uptake of dsRNA ingested from the environment
 dsRNA transport/uptake,CLH,endocytotic process
+dsRNA transport/uptake,CLH1,endocytotic process
+dsRNA transport/uptake,CLH2,endocytotic process
 dsRNA transport/uptake,INX2,involved in forming intercellular channels
 dsRNA transport/uptake,EPN,binds to membranes enriched in phosphatidylinositol 4.5-bisphosphate
 dsRNA transport/uptake,SCRB1,mediated the uptake of exogenous dsRNAs in the induction of the RNAi responses
