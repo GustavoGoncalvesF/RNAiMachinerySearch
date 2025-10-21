@@ -1,4 +1,4 @@
-# This function plots a heatmap to represent founded RNAi core genes expression amoung samples
+# This function plots a heatmap to represent the expression of RNAi core genes among samples.
 
 library(ComplexHeatmap)
 
@@ -9,8 +9,8 @@ heatmap.plot <- function(rnai_hits, expr_matrix){
   rownames(heatmap_data) <- rnai_hits$ProteinAnnotation[rnai_hits$GeneID %in% gene_present]
 
   # Input validation
-  if (is.null(heatmap_data)){
-    stop("Cannot plot heatmap because no one of RNAi hits are finded in expression matrix.")
+  if (nrow(heatmap_data) ==0){
+    stop("Cannot plot a heatmap because none of the RNAi hits are found in the expression matrix.")
   }
 
   # Normalizing data before plot
