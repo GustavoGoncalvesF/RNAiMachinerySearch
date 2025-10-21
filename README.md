@@ -11,6 +11,7 @@ install.packages("devtools")
 install.packages("BiocManager")
 
 # Install rnaiMachinerySearch
-devtools::install_github("GustavoGoncalvesF/rnaiMachinerySearch", repos = c("https://cloud.r-project.org/",
+devtools::install_github("GustavoGoncalvesF/rnaiMachinerySearch",
+                          repos = c("https://cloud.r-project.org/",
                                    BiocManager::repositories()))
 ```
