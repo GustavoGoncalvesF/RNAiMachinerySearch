@@ -18,7 +18,7 @@ report.machinery <- function(rnai_hits) {
   counts_named <- setNames(as.integer(counts_df$Count), counts_df$Category)
 
   # Print
-  cat("##########~~ Reporting hits of core genes from RNAi machinery ~~##########\nTotal:", nrow(rnai_hits), "hits.\n")
+  cat("~~ Summary of identified RNAi core machinery genes ~~\nTotal:", nrow(rnai_hits), "hits.\n")
 
   for (cat_name in expected_categories) {
     count <- counts_named[cat_name]
