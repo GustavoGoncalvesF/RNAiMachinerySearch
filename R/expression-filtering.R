@@ -30,6 +30,16 @@ expr.filter <- function(raw_rnai_hits, expression_df, groups_df, cpm_cut_group =
   # Update found genes list with the filtered ones
   filtered_rnai_hits <- raw_rnai_hits[raw_rnai_hits$GeneID %in% rownames(expr_filtered), , drop = FALSE]
 
+  # Report
+  total_genes <- nrow(expr_sub)
+  after_group <- sum(keep_genes)
+  after_global <- sum(keep_genes2)
+
+  cat("~~ Report of genes filtration ~~\n",
+      "Total pre-filtration:", total_genes, "genes.\n",
+      "Removed by group minimum CPM criterion:", total_genes - after_group, "genes.\n",
+      "Removed by global minimum CPM criterion:", after_group - after_global, "genes.\n")
+
   # Return filtered rnai_hits dataframe
   return(filtered_rnai_hits)
 }

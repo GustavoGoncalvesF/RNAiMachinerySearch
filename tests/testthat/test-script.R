@@ -20,7 +20,7 @@ groups_df <- read.table(file3, header = TRUE, sep = ",", stringsAsFactors = FALS
 raw_rnai_hits <- search.rnai(annotation_df,"sprot_Top_BLASTX_hit")
 
 #Testing filter function
-filtered_rnai_hits <- expr.filter(raw_rnai_hits, expression_df, groups_df, cpm_cut_group = 1, cpm_cut_global = 10)
+filtered_rnai_hits <- expr.filter(raw_rnai_hits, expression_df, groups_df, cpm_cut_group = 1, cpm_cut_global = 20)
 
 # Testing sunburst plot function
 sunburst.plot(raw_rnai_hits)
