@@ -10,8 +10,13 @@ file1 <- system.file("extdata", "partial_table2.xls", package = "rnaiMachinerySe
 annotation_df <- read.table(file1, sep = "\t", header = TRUE, quote = "", comment.char = "", fill = TRUE)
 
 # Input expression matrix
-file2 <- file.path("C:/Users/gugam/Documents/Data/raw_counts_filtered.txt")
+file2 <- file.path("C:/Users/gugam/OneDrive/Documentos/Data/raw_counts.txt")
 expression_df <- read.table(file2, header = TRUE, row.names = 1, sep = " ", stringsAsFactors = FALSE)
+
+# Input groups file
+file3 <- file.path("extdata", "samples.txt", package = "rnaiMachinerySearch")
+file3 <- file.path("C:/Users/gugam/OneDrive/Documentos/samples.txt")
+groups_df <- read.table(file3, header = TRUE, sep = ",", stringsAsFactors = FALSE)
 
 # Testing search function
 rnai_hits <- search.rnai(annotation_df,"sprot_Top_BLASTX_hit")

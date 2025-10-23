@@ -6,7 +6,7 @@ Authors@R:
 Description: Identify RNAi machinery core genes in annotate tables.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
-Imports: dplyr, plotly, stringr, BiocManager, ComplexHeatmap
+Imports: dplyr, plotly, stringr, BiocManager, ComplexHeatmap, edgeR
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3

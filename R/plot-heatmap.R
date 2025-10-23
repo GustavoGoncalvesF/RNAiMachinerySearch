@@ -6,7 +6,6 @@ heatmap.plot <- function(rnai_hits, expression_df){
   # Merge keeping only protein annotation's present in the expression dataframe, and preserve they order
   gene_present <- rnai_hits$GeneID[rnai_hits$GeneID %in% rownames(expression_df)]
   heatmap_data <- expression_df[gene_present, , drop = FALSE]
-  rownames(heatmap_data) <- rnai_hits$ProteinAnnotation[rnai_hits$GeneID %in% gene_present]
 
   # Input validation
   if (nrow(heatmap_data) ==0){

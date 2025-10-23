@@ -30,17 +30,22 @@ search.rnai <- function(annotation_df, column) {
     return(subset)
   })
   # Join every single one match in a unique data frame and rename columns
-  rnai_hits <- dplyr::select(do.call(rbind, matches), 1,column,"Category")
-  colnames(rnai_hits) <- c("GeneID", "ProteinAnnotation", "Category")
+  raw_rnai_hits <- dplyr::select(do.call(rbind, matches), 1,column,"Category")
+  colnames(raw_rnai_hits) <- c("GeneID", "ProteinAnnotation", "Category")
 
-  # Filtering the annotation column to keep only UniProt name and removing duplicates contigs results
-  rnai_hits$ProteinAnnotation <- sub('.*?([A-Za-z0-9_]+)_([A-Za-z0-9_]+).*', '\\1_\\2', rnai_hits$ProteinAnnotation)
+  # Filtering the annotation column to keep only UniProt name
+  raw_rnai_hits$ProteinAnnotation <- sub('.*?([A-Za-z0-9_]+)_([A-Za-z0-9_]+).*', '\\1_\\2', raw_rnai_hits$ProteinAnnotation)
 
   # Add functions column based in genes short name
-  rnai_hits$GeneShort <- sub("_.*", "", rnai_hits$ProteinAnnotation)
-  rnai_hits$Function <- gene_list$Function[match(rnai_hits$GeneShort, gene_list$Gene)]
+  raw_rnai_hits$GeneShort <- sub("_.*", "", raw_rnai_hits$ProteinAnnotation)
+  raw_rnai_hits$Function <- gene_list$Function[match(raw_rnai_hits$GeneShort, gene_list$Gene)]
 
-  report.machinery(rnai_hits)
-    return(rnai_hits)
+  # Remove duplicated GeneIDs
+  raw_rnai_hits <- raw_rnai_hits[!duplicated(raw_rnai_hits$GeneID), ]
 
+  # Make ProteinAnnotation unique by putting sufix in duplicates
+  raw_rnai_hits$ProteinAnnotation <- make.unique(raw_rnai_hits$ProteinAnnotation)
+
+  report.machinery(raw_rnai_hits)
+    return(raw_rnai_hits)
 }
