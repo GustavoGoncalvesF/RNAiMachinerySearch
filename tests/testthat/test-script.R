@@ -10,7 +10,7 @@ file1 <- system.file("extdata", "partial_table2.xls", package = "rnaiMachinerySe
 annotation_df <- read.table(file1, sep = "\t", header = TRUE, quote = "", comment.char = "", fill = TRUE)
 
 # Input expression matrix
-file2 <- file.path("C:/Users/gugam/OneDrive/Documentos/Data/raw_counts.txt")
+file2 <- file.path("C:/Users/gugam/Documents/Data/raw_counts.txt")
 expression_df <- read.table(file2, header = TRUE, row.names = 1, sep = " ", stringsAsFactors = FALSE)
 
 # Input groups file
