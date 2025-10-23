@@ -13,8 +13,7 @@ file2 <- file.path("C:/Users/gugam/Documents/Data/raw_counts.txt")
 expression_df <- read.table(file2, header = TRUE, row.names = 1, sep = " ", stringsAsFactors = FALSE)
 
 # Input groups file
-file3 <- file.path("extdata", "samples.txt", package = "rnaiMachinerySearch")
-file3 <- file.path("C:/Users/gugam/OneDrive/Documentos/samples.txt")
+file3 <- system.file("extdata", "samples.txt", package = "rnaiMachinerySearch")
 groups_df <- read.table(file3, header = TRUE, sep = ",", stringsAsFactors = FALSE)
 
 # Testing search function
