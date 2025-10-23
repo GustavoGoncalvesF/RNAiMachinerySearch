@@ -19,10 +19,15 @@ file3 <- file.path("C:/Users/gugam/OneDrive/Documentos/samples.txt")
 groups_df <- read.table(file3, header = TRUE, sep = ",", stringsAsFactors = FALSE)
 
 # Testing search function
-rnai_hits <- search.rnai(annotation_df,"sprot_Top_BLASTX_hit")
+raw_rnai_hits <- search.rnai(annotation_df,"sprot_Top_BLASTX_hit")
+
+#Testing filter function
+filtered_rnai_hits <- expr.filter(raw_rnai_hits)
 
 # Testing sunburst plot function
-sunburst.plot(rnai_hits)
+sunburst.plot(raw_rnai_hits)
+sunburst.plot(filteredrnai_hits)
 
 # Testing heatmap plot function
-heatmap.plot(rnai_hits, expression_df)
+heatmap.plot(raw_rnai_hits, expression_df)
+heatmap.plot(filtered++rnai_hits, expression_df)
