@@ -13,15 +13,14 @@ file2 <- file.path("C:/Users/gugam/Documents/Data/raw_counts.txt")
 expression_df <- read.table(file2, header = TRUE, row.names = 1, sep = " ", stringsAsFactors = FALSE)
 
 # Input groups file
-file3 <- file.path("extdata", "samples.txt", package = "rnaiMachinerySearch")
-file3 <- file.path("C:/Users/gugam/OneDrive/Documentos/samples.txt")
+file3 <- system.file("extdata", "samples.txt", package = "rnaiMachinerySearch")
 groups_df <- read.table(file3, header = TRUE, sep = ",", stringsAsFactors = FALSE)
 
 # Testing search function
 raw_rnai_hits <- search.rnai(annotation_df,"sprot_Top_BLASTX_hit")
 
 #Testing filter function
-filtered_rnai_hits <- expr.filter(raw_rnai_hits)
+filtered_rnai_hits <- expr.filter(raw_rnai_hits, expression_df, groups_df, cpm_cut_group = 1, cpm_cut_global = 10)
 
 # Testing sunburst plot function
 sunburst.plot(raw_rnai_hits)
