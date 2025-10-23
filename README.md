@@ -15,3 +15,5 @@ devtools::install_github("GustavoGoncalvesF/rnaiMachinerySearch",
                           repos = c("https://cloud.r-project.org/",
                                    BiocManager::repositories()))
 ```
+## Workflow
+![Workflow](https://github.com/GustavoGoncalvesF/RNAiMachinerySearch/blob/master/man/figures/workflow.png)
