@@ -36,9 +36,10 @@ expr.filter <- function(raw_rnai_hits, expression_df, groups_df, cpm_cut_group =
   after_global <- sum(keep_genes2)
 
   cat("~~ Report of genes filtration ~~\n",
-      "Total pre-filtration:", total_genes, "genes.\n",
+      "Total pre filter:", total_genes, "genes.\n",
       "Removed by group minimum CPM criterion:", total_genes - after_group, "genes.\n",
-      "Removed by global minimum CPM criterion:", after_group - after_global, "genes.\n")
+      "Removed by global minimum CPM criterion:", after_group - after_global, "genes.\n",
+      "Total post filter:", after_global, "genes.\n")
 
   # Return filtered rnai_hits dataframe
   return(filtered_rnai_hits)

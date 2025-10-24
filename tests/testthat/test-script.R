@@ -3,7 +3,7 @@
 library(readxl)
 
 # Input full table
-file1 <- file.path("C:/Users/gugam/Documents/Data/mahanarva_annotation_report.xls")
+file1 <- file.path("C:/Users/gugam/Onedrive/Documentos/Data/mahanarva_annotation_report.xls")
 file1 <- file.path("C:/Users/gugam/Documents/Data/metisa_annotation_report.xlsx")
 file1 <- file.path("C:/Users/gugam/Documents/Data/highfive_annotation_report.xlsx")
 file1 <- file.path("C:/Users/gugam/Documents/Data/centropomus_annotation_report.tsv")
@@ -15,7 +15,7 @@ annotation_df <- read.table(file1, sep = "\t", header = TRUE, quote = "", commen
 annotation_df <- readxl::read_excel(file1, sheet = 1) # < for xlsx
 
 # Input expression matrix
-file2 <- file.path("C:/Users/gugam/Documents/Data/raw_counts.txt")
+file2 <- file.path("C:/Users/gugam/Onedrive/Documentos/Data/raw_counts.txt")
 expression_df <- read.table(file2, header = TRUE, row.names = 1, sep = " ", stringsAsFactors = FALSE)
 
 # Input groups file
