@@ -1,6 +1,6 @@
 # This function filters the rnai_hits dataframe to keep only relevant contigs in the downstream analysis
-# The first filter keep a gene if it has a cpm >= to "cpm_cut" in all samples of a group
-# The second filter keep a gene if it has cpm >= 20 in at least 3 samples (global minimum expression criterion)
+# The first filter keep a gene if it has a cpm >= to "cpm_cut_group" in all samples of a group (group minimum expression criterion)
+# The second filter keep a gene if it has cpm >= to "cpm_cut_global" in at least the minimal replicates number (global minimum expression criterion)
 
 library(edgeR)
 
@@ -44,4 +44,3 @@ expr.filter <- function(raw_rnai_hits, expression_df, groups_df, cpm_cut_group =
   # Return filtered rnai_hits dataframe
   return(filtered_rnai_hits)
 }
-

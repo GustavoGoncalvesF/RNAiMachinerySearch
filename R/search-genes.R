@@ -36,9 +36,10 @@ search.rnai <- function(annotation_df, column) {
   # Filtering the annotation column to keep only UniProt name
   raw_rnai_hits$ProteinAnnotation <- sub('.*?([A-Za-z0-9_]+)_([A-Za-z0-9_]+).*', '\\1_\\2', raw_rnai_hits$ProteinAnnotation)
 
-  # Add functions column based in genes short name
+  # Add functions column based in genes short name (them remove geneshort column)
   raw_rnai_hits$GeneShort <- sub("_.*", "", raw_rnai_hits$ProteinAnnotation)
   raw_rnai_hits$Function <- gene_list$Function[match(raw_rnai_hits$GeneShort, gene_list$Gene)]
+  raw_rnai_hits <- raw_rnai_hits[, -which(names(raw_rnai_hits) == "GeneShort")]
 
   # Remove duplicated GeneIDs
   raw_rnai_hits <- raw_rnai_hits[!duplicated(raw_rnai_hits$GeneID), ]
