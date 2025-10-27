@@ -3,21 +3,32 @@
 library(plotly)
 
 sunburst.plot <- function(rnai_hits){
+  # Catalog of colors by category
+  category_colors <- read.csv(system.file("extdata", "category_colors.txt", package = "RNAiMachinerySearch"), stringsAsFactors = FALSE)
+  category_colors <- setNames(category_colors$Color, category_colors$Category)
+
+  # Prepare data frame from rna_hits
   data <- data.frame(
   labels = c(unique(rnai_hits$Category), rnai_hits$ProteinAnnotation),
   parents = c(rep("", length(unique(rnai_hits$Category))), rnai_hits$Category),
   hovertext = c(rep("", length(unique(rnai_hits$Category))), rnai_hits$Function)
-    )
-    return(
-      plot_ly(
-        data,
-        labels = ~labels,
-        parents = ~parents,
-        type = "sunburst",
-        branchvalues = "total",
-        hovertext = ~hovertext,
-        hoverinfo = "text+label"
-      ) %>%
-      layout(title = "Distribution of genes by categories")
-)
+  )
+
+  # Assign colors
+  cat_colors <- category_colors[unique(rnai_hits$Category)]
+  prot_colors <- category_colors[rnai_hits$Category]
+  data$color <- c(cat_colors, prot_colors)
+
+  # Ploting with plotly
+  plot_ly(
+    data,
+    labels = ~labels,
+    parents = ~parents,
+    type = "sunburst",
+    branchvalues = "total",
+    hovertext = ~hovertext,
+    hoverinfo = "text+label",
+    marker = list(colors = ~color)
+   ) %>%
+  layout(title = "Distribution of genes by categories")
 }

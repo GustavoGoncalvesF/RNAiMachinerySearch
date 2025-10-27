@@ -4,6 +4,10 @@ library(plotly)
 library(openxlsx)
 
 stackedbars.plot <- function(rnai_hits, expression_df, groups_df, save_table = FALSE, table_path = NULL) {
+  # Catalog of colors by category
+  category_colors <- read.csv(system.file("extdata", "category_colors.txt", package = "RNAiMachinerySearch"), stringsAsFactors = FALSE)
+  category_colors <- setNames(category_colors$Color, category_colors$Category)
+
   # Filtering expression matrix to keep only hits from filtered
   expr_sub <- expression_df[rownames(expression_df) %in% rnai_hits$GeneID, , drop = FALSE]
 
@@ -52,6 +56,7 @@ stackedbars.plot <- function(rnai_hits, expression_df, groups_df, save_table = F
     x = ~Group,
     y = ~Expression,
     color = ~Category,
+    colors = category_colors,
     type = "bar"
   ) %>%
     plotly::layout(
