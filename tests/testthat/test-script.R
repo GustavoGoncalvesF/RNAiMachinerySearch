@@ -7,7 +7,7 @@ file1 <- file.path("C:/Users/gugam/Documents/Data/mahanarva_annotation_report.xl
 file1 <- file.path("C:/Users/gugam/Documents/Data/metisa_annotation_report.xlsx")
 file1 <- file.path("C:/Users/gugam/Documents/Data/highfive_annotation_report.xlsx")
 file1 <- file.path("C:/Users/gugam/Documents/Data/centropomus_annotation_report.tsv")
-file1 <- system.file("extdata", "partial_table2.xls", package = "RNAiMachinerySearch")
+file1 <- system.file("extdata", "partial_table1.xls", package = "RNAiMachinerySearch")
 file1 <- system.file("extdata", "partial_table2.xls", package = "RNAiMachinerySearch")
 
 # Input annotation tables
@@ -15,7 +15,7 @@ annotation_df <- read.table(file1, sep = "\t", header = TRUE, quote = "", commen
 annotation_df <- readxl::read_excel(file1, sheet = 1) # < for xlsxs
 
 # Input expression matrix
-file2 <- file.path("C:/Users/gugam/Documents/Data/raw_counts.txt")
+file2 <- file.path("C:/Users/gugam/Onedrive/Documentos/Data/raw_counts.txt")
 expression_df <- read.table(file2, header = TRUE, row.names = 1, sep = " ", stringsAsFactors = FALSE)
 
 # Input groups file
@@ -35,3 +35,8 @@ sunburst.plot(filtered_rnai_hits)
 # Testing heatmap plot function
 heatmap.plot(raw_rnai_hits, expression_df)
 heatmap.plot(filtered_rnai_hits, expression_df)
+
+# Testing stacked bars lot function
+stackedbars.plot(raw_rnai_hits, expression_df, groups_df)
+stackedbars.plot(filtered_rnai_hits, expression_df, groups_df)
+stackedbars.plot(filtered_rnai_hits, expression_df, groups_df, save_table = TRUE, table_path = "C:/Users/gugam/Onedrive/Documentos/export-tests/categoriestable.xlsx")
