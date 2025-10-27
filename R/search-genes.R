@@ -5,7 +5,7 @@ library(stringr)
 
 search.rnai <- function(annotation_df, column) {
   # Catalog of machinery's core genes
-  gene_list <- read.table(system.file("extdata","gene_list.txt", package = "rnaiMachinerySearch"), sep = ",", header = TRUE, stringsAsFactors = FALSE)
+  gene_list <- read.table(system.file("extdata","gene_list.txt", package = "RNAiMachinerySearch"), sep = ",", header = TRUE, stringsAsFactors = FALSE)
   catalog <- split(gene_list$Gene, gene_list$Category)
 
   # Pick up the functional annotation column
