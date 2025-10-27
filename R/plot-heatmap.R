@@ -17,10 +17,7 @@ heatmap.plot <- function(rnai_hits, expression_df){
   }
 
   # Normalizing data before plot
-  #heatmap_data_z <- t(scale(t(as.matrix(heatmap_data))))
+  heatmap_data_z <- t(scale(t(as.matrix(heatmap_data))))
 
-  # Normalizing via edgeR
-  heatmap_data_z <- edgeR::cpm(as.matrix(heatmap_data), log = TRUE, prior.count = 1)
-
-  ComplexHeatmap::Heatmap(heatmap_data, name = "log2 CPM", row_names_side = "left", cluster_columns = FALSE, row_names_gp = gpar(fontsize = 10))
+  ComplexHeatmap::Heatmap(heatmap_dataz, name = "log2 CPM", row_names_side = "left", cluster_columns = FALSE, row_names_gp = gpar(fontsize = 10))
 }
