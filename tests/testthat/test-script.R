@@ -32,7 +32,7 @@ filtered_rnai_hits <- expr.filter(raw_rnai_hits, expression_df, groups_df, cpm_c
 sunburst.plot(raw_rnai_hits)
 sunburst.plot(filtered_rnai_hits)
 
-# Testing heatmap plot function
+# Testing heat map plot function
 heatmap.plot(raw_rnai_hits, expression_df)
 heatmap.plot(filtered_rnai_hits, expression_df)
 

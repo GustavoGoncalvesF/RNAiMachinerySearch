@@ -1,0 +1,6 @@
+Category,Color
+Argonautes,#ffd966
+Auxiliary RISC-associated,#8cc6e7
+Dicer family,#92e092
+dsRNA binding,#f28b82
+dsRNA transport/uptake,#bfa2e2
