@@ -12,7 +12,7 @@ file1 <- system.file("extdata", "partial_table2.xls", package = "RNAiMachinerySe
 
 # Input annotation tables
 annotation_df <- read.table(file1, sep = "\t", header = TRUE, quote = "", comment.char = "", fill = TRUE)
-annotation_df <- readxl::read_excel(file1, sheet = 1) # < for xlsx
+annotation_df <- readxl::read_excel(file1, sheet = 1) # < for xlsxs
 
 # Input expression matrix
 file2 <- file.path("C:/Users/gugam/Documents/Data/raw_counts.txt")
