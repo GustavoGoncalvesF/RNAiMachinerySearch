@@ -9,9 +9,10 @@ RNAiMachinerySearch is an R package designed to facilitate the screening of core
 # Required packages
 install.packages("devtools")
 install.packages("BiocManager")
+install.packages("edgeR")
 
 # Install rnaiMachinerySearch
-devtools::install_github("GustavoGoncalvesF/rnaiMachinerySearch",
+devtools::install_github("GustavoGoncalvesF/RNAiMachinerySearch",
                           repos = c("https://cloud.r-project.org/",
                                    BiocManager::repositories()))
 ```
