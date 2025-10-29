@@ -15,7 +15,7 @@ annotation_df <- read.table(file1, sep = "\t", header = TRUE, quote = "", commen
 annotation_df <- readxl::read_excel(file1, sheet = 1) # < for xlsxs
 
 # Input expression matrix
-file2 <- file.path("C:/Users/gugam/Onedrive/Documentos/Data/raw_counts.txt")
+file2 <- file.path("C:/Users/gugam/Documents/Data/raw_counts.txt")
 expression_df <- read.table(file2, header = TRUE, row.names = 1, sep = " ", stringsAsFactors = FALSE)
 
 # Input groups file
