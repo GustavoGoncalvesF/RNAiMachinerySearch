@@ -1,8 +1,9 @@
 # This function plots a sunburst chart to represent founded genes in each category, plus his functions in RNAi machinery
 
 library(plotly)
+library(htmlwidgets)
 
-sunburst.plot <- function(rnai_hits){
+sunburst.plot <- function(rnai_hits, save = FALSE, path = NULL){
   # Catalog of colors by category
   category_colors <- read.csv(system.file("extdata", "category_colors.txt", package = "RNAiMachinerySearch"), stringsAsFactors = FALSE)
   category_colors <- setNames(category_colors$Color, category_colors$Category)
@@ -20,7 +21,7 @@ sunburst.plot <- function(rnai_hits){
   data$color <- c(cat_colors, prot_colors)
 
   # Ploting with plotly
-  plot_ly(
+  plot <- plot_ly(
     data,
     labels = ~labels,
     parents = ~parents,
@@ -31,4 +32,15 @@ sunburst.plot <- function(rnai_hits){
     marker = list(colors = ~color)
    ) %>%
   layout(title = "Distribution of genes by categories")
+
+  # Export plot
+  if (isTRUE(save)) {
+    if (is.null(path)) {
+      path <- file.path(getwd(), "sunburst_plot.html")
+    }
+    htmlwidgets::saveWidget(plot, path)
+    message("Sunburst plot saved in: ", path)
+  }
+
+  return(plot)
 }

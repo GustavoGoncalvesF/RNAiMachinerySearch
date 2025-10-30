@@ -25,12 +25,14 @@ groups_df <- read.table(file3, header = TRUE, sep = ",", stringsAsFactors = FALS
 # Testing search function
 raw_rnai_hits <- search.rnai(annotation_df,"sprot_Top_BLASTX_hit")
 
-#Testing filter function
+# Testing filter function
 filtered_rnai_hits <- expr.filter(raw_rnai_hits, expression_df, groups_df, cpm_cut_group = 1, cpm_cut_global = 20)
 
 # Testing sunburst plot function
 sunburst.plot(raw_rnai_hits)
 sunburst.plot(filtered_rnai_hits)
+sunburst.plot(filtered_rnai_hits, save = TRUE, path = "C:/Users/gugam/Documents/export/sunburst.html")
+
 
 # Testing heat map plot function
 heatmap.plot(raw_rnai_hits, expression_df)
@@ -39,4 +41,5 @@ heatmap.plot(filtered_rnai_hits, expression_df)
 # Testing stacked bars lot function
 stackedbars.plot(raw_rnai_hits, expression_df, groups_df)
 stackedbars.plot(filtered_rnai_hits, expression_df, groups_df)
-stackedbars.plot(filtered_rnai_hits, expression_df, groups_df, save_table = TRUE, table_path = "C:/Users/gugam/Onedrive/Documentos/export-tests/categoriestable.xlsx")
+stackedbars.plot(filtered_rnai_hits, expression_df, groups_df, save_table = TRUE, table_path = "C:/Users/gugam/Documents/export/categoriestable.xlsx")
+stackedbars.plot(filtered_rnai_hits, expression_df, groups_df, save_plot = TRUE, plot_path = "C:/Users/gugam/Documents/export/plot.html")

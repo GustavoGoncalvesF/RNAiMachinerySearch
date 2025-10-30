@@ -1,4 +1,4 @@
-# This function filters the rnai_hits dataframe to keep only relevant contigs in the downstream analysis
+# This function filters the raw rnai hits data frame to keep only relevant contigs in the downstream analysis
 # The first filter keep a gene if it has a cpm >= to "cpm_cut_group" in all samples of a group (group minimum expression criterion)
 # The second filter keep a gene if it has cpm >= to "cpm_cut_global" in at least the minimal replicates number (global minimum expression criterion)
 
@@ -17,7 +17,7 @@ expr.filter <- function(raw_rnai_hits, expression_df, groups_df, cpm_cut_group =
   samples <- groups_df$SAMPLE
   min_reps <- max(table(groups_df$SAMPLE))
 
-  # Group samples and aplly  first filter (per groups)
+  # Group samples and applies first filter (per groups)
   keep_genes <- apply(cpm, 1, function(gene_row) {
     tapply(seq_along(gene_row), samples, function(idxs) all(gene_row[idxs] >= cpm_cut_group)) |> any()
   })
@@ -35,7 +35,7 @@ expr.filter <- function(raw_rnai_hits, expression_df, groups_df, cpm_cut_group =
   after_group <- sum(keep_genes)
   after_global <- sum(keep_genes2)
 
-  cat("~~ Report of genes filtration ~~\n",
+  cat("~~ Report of genes filtering ~~\n",
       "Total pre filter:", total_genes, "genes.\n",
       "Removed by group minimum CPM criterion:", total_genes - after_group, "genes.\n",
       "Removed by global minimum CPM criterion:", after_group - after_global, "genes.\n",

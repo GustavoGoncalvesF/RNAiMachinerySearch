@@ -3,7 +3,7 @@
 library(plotly)
 library(openxlsx)
 
-stackedbars.plot <- function(rnai_hits, expression_df, groups_df, save_table = FALSE, table_path = NULL) {
+stackedbars.plot <- function(rnai_hits, expression_df, groups_df, save_table = FALSE, table_path = NULL, save_plot = FALSE, plot_path = NULL) {
   # Catalog of colors by category
   category_colors <- read.csv(system.file("extdata", "category_colors.txt", package = "RNAiMachinerySearch"), stringsAsFactors = FALSE)
   category_colors <- setNames(category_colors$Color, category_colors$Category)
@@ -51,7 +51,7 @@ stackedbars.plot <- function(rnai_hits, expression_df, groups_df, save_table = F
   agg_long$Group <- factor(agg_long$Group, levels = group_order)
 
   # Ploting with plotly
-  p <- plotly::plot_ly(
+  plot <- plotly::plot_ly(
     agg_long,
     x = ~Group,
     y = ~Expression,
@@ -66,7 +66,7 @@ stackedbars.plot <- function(rnai_hits, expression_df, groups_df, save_table = F
       legend = list(title = list(text = "RNAi categories"))
     )
 
-  # Export category x summeds table
+  # Export category x summed table
   if (isTRUE(save_table)) {
     if (is.null(table_path)) {
       table_path <- file.path(getwd(), "categories-vs-sum.xlsx")
@@ -74,5 +74,14 @@ stackedbars.plot <- function(rnai_hits, expression_df, groups_df, save_table = F
     openxlsx::write.xlsx(agg_df, table_path, rowNames = FALSE)
     message("Table saved in: ", table_path)
   }
-  return(p)
+  # Export plot
+  if (isTRUE(save_plot)) {
+    if (is.null(plot_path)) {
+      plot_path <- file.path(getwd(), "stackedbars_plot.html")
+    }
+    htmlwidgets::saveWidget(plot, plot_path)
+    message("Stacked bards plot saved in: ", plot_path)
+  }
+
+  return(plot)
 }
