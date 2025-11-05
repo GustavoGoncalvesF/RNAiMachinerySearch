@@ -31,15 +31,18 @@ filtered_rnai_hits <- expr.filter(raw_rnai_hits, expression_df, groups_df, cpm_c
 # Testing sunburst plot function
 sunburst.plot(raw_rnai_hits)
 sunburst.plot(filtered_rnai_hits)
-sunburst.plot(filtered_rnai_hits, save = TRUE, path = "C:/Users/gugam/Documents/export/sunburst.html")
-
-
-# Testing heat map plot function
-heatmap.plot(raw_rnai_hits, expression_df)
-heatmap.plot(filtered_rnai_hits, expression_df)
+sunburst.plot(filtered_rnai_hits, save = TRUE, path = "C:/Users/gugam/Documents/export/sunburst_example.html")
 
 # Testing stacked bars lot function
 stackedbars.plot(raw_rnai_hits, expression_df, groups_df)
 stackedbars.plot(filtered_rnai_hits, expression_df, groups_df)
 stackedbars.plot(filtered_rnai_hits, expression_df, groups_df, save_table = TRUE, table_path = "C:/Users/gugam/Documents/export/categoriestable.xlsx")
 stackedbars.plot(filtered_rnai_hits, expression_df, groups_df, save_plot = TRUE, plot_path = "C:/Users/gugam/Documents/export/plot.html")
+
+# Testing heat map plot function
+heatmap.plot(raw_rnai_hits, expression_df)
+heatmap.plot(filtered_rnai_hits, expression_df)
+heatmap.plot(filtered_rnai_hits, expression_df, normalize = "logCPM")
+heatmap.plot(filtered_rnai_hits, expression_df, normalize = "zscore")
+heatmap.plot(filtered_rnai_hits, expression_df, normalize = "none")
+heatmap.plot(filtered_rnai_hits, expression_df, save = TRUE, path = "C:/Users/gugam/Documents/export/heatmap.png")

@@ -35,9 +35,6 @@ stackedbars.plot <- function(rnai_hits, expression_df, groups_df, save_table = F
   # Merge by category (add all contigs by categories)
   agg_df <- aggregate(. ~ Category, data = grouped_expr, sum)
 
-  # Normalize by log
-  #agg_df[,-1] <- log1p(agg_df[,-1])
-
   # Adapt data to long format input
   agg_long <- tidyr::pivot_longer(
     agg_df,

@@ -1,9 +1,9 @@
-# This function plots a heatmap to represent the expression of RNAi core genes among samples.
+# This function plots a heatmap to represent the expression of RNAi core genes across samples.
 
 library(ComplexHeatmap)
 library(edgeR)
 
-heatmap.plot <- function(rnai_hits, expression_df){
+heatmap.plot <- function(rnai_hits, expression_df, normalize = c("logCPM", "zscore", "none"), save = FALSE, path = NULL){
   # Merge keeping only protein annotation's present in the expression dataframe, and preserve they order
   gene_present <- rnai_hits$GeneID[rnai_hits$GeneID %in% rownames(expression_df)]
   heatmap_data <- expression_df[gene_present, , drop = FALSE]
@@ -17,7 +17,47 @@ heatmap.plot <- function(rnai_hits, expression_df){
   }
 
   # Normalizing data before plot
-  heatmap_data_z <- t(scale(t(as.matrix(heatmap_data))))
+  normalize <- match.arg(normalize)
 
-  ComplexHeatmap::Heatmap(heatmap_data_z, name = "log2 CPM", row_names_side = "left", cluster_columns = FALSE, row_names_gp = gpar(fontsize = 10))
+  mat <- as.matrix(heatmap_data)
+
+  if (normalize == "logCPM") {
+    dge <- edgeR::DGEList(counts = mat)
+    mat <- edgeR::cpm(dge, log = TRUE, prior.count = 1)
+  }
+
+  if (normalize == "zscore") {
+    dge <- edgeR::DGEList(counts = mat)
+    mat <- edgeR::cpm(dge, log = TRUE, prior.count = 1)
+    mat <- t(scale(t(mat)))
+  }
+
+  if (normalize == "none") {
+    mat <- as.matrix(mat)
+  }
+
+  # Plot
+  legend_name <- switch(
+    normalize,
+    "logCPM" = "log2 CPM",
+    "zscore" = "Z-score",
+    "none"   = "Expression"
+  )
+  plot <- ComplexHeatmap::Heatmap(mat, name = legend_name, row_names_side = "left", cluster_columns = FALSE, row_names_gp = gpar(fontsize = 10))
+
+  # Draw in viewer
+  ComplexHeatmap::draw(plot)
+
+  # Export plot
+  if (isTRUE(save)) {
+    if (is.null(path)) {
+      path <- file.path(getwd(), "heatmap_plot.png")
+    }
+    png(path, width = 2000, height = 1800, res = 300)
+    draw(plot)
+    dev.off()
+    message("Heatmap plot saved in: ", path)
+  }
+
+  return(plot)
 }
