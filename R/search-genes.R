@@ -1,10 +1,40 @@
-# Searching the core genes of RNAi machinery from a annotation table coming in data.frame format
-
-# This function identify the genes based in they UniProt names
-library(stringr)
+#' @title Search for RNAi Core Genes in Annotation Data
+#'
+#' @description
+#' Identifies genes related to the RNA interference (RNAi) machinery in a given annotation data frame.
+#' The function compares UniProt annotation names against a curated catalog of RNAi core components,
+#' classifies each match by functional category, and outputs a structured data frame ready for downstream analyses.
+#'
+#' @param annotation_df A data frame containing functional annotation results (e.g., Trinotate output).
+#' @param column A character string specifying the column name within `annotation_df` where UniProt annotation names are stored.
+#'
+#' @return
+#' A data frame (`raw_rnai_hits`) containing:
+#' \itemize{
+#'   \item \strong{GeneID}: The gene or contig identifier from the input annotation.
+#'   \item \strong{ProteinAnnotation}: The matched UniProt protein name.
+#'   \item \strong{Category}: The RNAi functional category assigned to each match.
+#'   \item \strong{Function}: The molecular function of each identified RNAi core gene.
+#' }
+#'
+#' @details
+#' The function automatically filters annotation entries based on a curated catalog (`gene_list.txt`)
+#' of RNAi machinery genes, stored in the package's `extdata` directory.
+#' Input validation is internally performed through \code{validate.inputs()} to ensure consistent formats.
+#' Different contigs with the same UniProt name annotation will be kept with a prefix ".1, .2, [...]".
+#'
+#' @examples
+#' \dontrun{
+#' # Example usage:
+#' annotation <- read.table("annotation_report.xls")
+#' rnai_hits <- search.rnai(annotation_df = annotation, column = "Protein.names")
+#' }
+#'
+#' @importFrom dplyr select
+#' @export
 
 search.rnai <- function(annotation_df, column) {
-  # Catalog of machinery's core genes
+  # Load catalog of machinery's core genes
   gene_list <- read.table(system.file("extdata","gene_list.txt", package = "RNAiMachinerySearch"), sep = ",", header = TRUE, stringsAsFactors = FALSE)
   catalog <- split(gene_list$Gene, gene_list$Category)
 
