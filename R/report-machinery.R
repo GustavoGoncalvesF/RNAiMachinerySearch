@@ -1,6 +1,9 @@
 # This function do counts about match genes and print total/per categories numbers
 
 report.machinery <- function(rnai_hits) {
+  # Input validation
+  validate.inputs(rnai_hits = rnai_hits)
+
   # Define categories to count
   expected_categories <- c(
     "Argonautes",

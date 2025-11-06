@@ -12,6 +12,12 @@ heatmap.plot <- function(rnai_hits, expression_df, normalize = c("logCPM", "zsco
   rownames(heatmap_data) <- rnai_hits$ProteinAnnotation[rnai_hits$GeneID %in% gene_present]
 
   # Input validation
+  validate.inputs(rnai_hits = rnai_hits,
+                  expression_df = expression_df,
+                  normalize = normalize,
+                  save = save,
+                  path = path
+  )
   if (nrow(heatmap_data) ==0){
     stop("Cannot plot a heatmap because none of the RNAi hits are found in the expression matrix.")
   }

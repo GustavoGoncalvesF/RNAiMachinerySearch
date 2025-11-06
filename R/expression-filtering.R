@@ -5,6 +5,13 @@
 library(edgeR)
 
 expr.filter <- function(raw_rnai_hits, expression_df, groups_df, cpm_cut_group = 1, cpm_cut_global = 10){
+  # Input validation
+  validate.inputs(rnai_hits = raw_rnai_hits,
+                  expression_df = expression_df,
+                  groups_df = groups_df,
+                  cpm_cut = c(cpm_cut_group, cpm_cut_global)
+  )
+
   # Merge keeping only protein annotation's present in the expression dataframe, and preserve they order
   gene_present <- raw_rnai_hits$GeneID[raw_rnai_hits$GeneID %in% rownames(expression_df)]
   expr_sub <- expression_df[gene_present, , drop = FALSE]

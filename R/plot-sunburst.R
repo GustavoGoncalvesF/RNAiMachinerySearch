@@ -4,6 +4,12 @@ library(plotly)
 library(htmlwidgets)
 
 sunburst.plot <- function(rnai_hits, save = FALSE, path = NULL){
+  # Input validation
+  validate.inputs(rnai_hits = rnai_hits,
+                  save = save,
+                  path = path
+  )
+
   # Catalog of colors by category
   category_colors <- read.csv(system.file("extdata", "category_colors.txt", package = "RNAiMachinerySearch"), stringsAsFactors = FALSE)
   category_colors <- setNames(category_colors$Color, category_colors$Category)

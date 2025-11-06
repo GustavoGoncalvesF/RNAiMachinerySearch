@@ -4,6 +4,14 @@ library(plotly)
 library(openxlsx)
 
 stackedbars.plot <- function(rnai_hits, expression_df, groups_df, save_table = FALSE, table_path = NULL, save_plot = FALSE, plot_path = NULL) {
+  # Input validation
+  validate.inputs(rnai_hits = rnai_hits,
+                  expression_df = expression_df,
+                  groups_df = groups_df,
+                  save = c(save_table, save_plot),
+                  path = c(table_path, plot_path)
+  )
+
   # Catalog of colors by category
   category_colors <- read.csv(system.file("extdata", "category_colors.txt", package = "RNAiMachinerySearch"), stringsAsFactors = FALSE)
   category_colors <- setNames(category_colors$Color, category_colors$Category)

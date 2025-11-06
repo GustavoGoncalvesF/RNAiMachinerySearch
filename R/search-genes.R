@@ -8,13 +8,11 @@ search.rnai <- function(annotation_df, column) {
   gene_list <- read.table(system.file("extdata","gene_list.txt", package = "RNAiMachinerySearch"), sep = ",", header = TRUE, stringsAsFactors = FALSE)
   catalog <- split(gene_list$Gene, gene_list$Category)
 
+  # Input validation
+  validate.inputs(annotation_df = annotation_df, column = column)
+
   # Pick up the functional annotation column
   col_data <- annotation_df[[column]]
-
-  # Input validation
-  if (is.null(col_data)) {
-    stop("Cannot find the speficied column in the dataframe, please check the name and try again.")
-  }
 
   # Looking for matches between catalog and annotations
   matches <- lapply(names(catalog), function(cat) {
