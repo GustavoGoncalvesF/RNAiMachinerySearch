@@ -1,7 +1,5 @@
 # Script used to test the execution flow of the package
 
-library(readxl)
-
 # Input full table
 file1 <- file.path("C:/Users/gugam/Documents/Data/mahanarva_annotation_report.xls")
 file1 <- file.path("C:/Users/gugam/Documents/Data/metisa_annotation_report.xlsx")

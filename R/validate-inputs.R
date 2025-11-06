@@ -1,6 +1,21 @@
-# Internal function to do a validation in inputs
-
-# @keywords internal
+#' Internal function to validate inputs across RNAiMachinerySearch functions
+#'
+#' This function checks the inputs provided to other functions in the package,
+#' ensuring that data frames, columns, thresholds, logical flags, paths, and
+#' normalization options are valid. It stops execution and returns an informative
+#' error if any input is invalid.
+#'
+#' @param annotation_df Optional data frame containing annotations.
+#' @param column Optional character string specifying the column in \code{annotation_df} to use.
+#' @param expression_df Optional data frame with RNA-seq counts.
+#' @param groups_df Optional data frame with sample groups; must contain columns "SAMPLE" and "REP".
+#' @param rnai_hits Optional data frame of RNAi hits; must contain columns "GeneID", "ProteinAnnotation", and "Category".
+#' @param cpm_cut Optional numeric vector with CPM cutoff(s); must be non-negative.
+#' @param save Optional logical; if \code{TRUE}, results can be saved (used in downstream functions).
+#' @param path Optional character string specifying directories for saving outputs; must exist.
+#' @param normalize Optional character specifying normalization method; must be one of "logCPM", "zscore", or "none".
+#'
+#' @keywords internal
 
 validate.inputs <- function(annotation_df = NULL,
                             column = NULL,
