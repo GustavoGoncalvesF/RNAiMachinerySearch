@@ -32,6 +32,9 @@
 #'
 #' @importFrom ComplexHeatmap Heatmap draw
 #' @importFrom edgeR DGEList cpm
+#' @importFrom grDevices png dev.off
+#' @importFrom grid gpar
+#'
 #' @export
 
 heatmap.plot <- function(rnai_hits, expression_df, normalize = c("logCPM", "zscore", "none"), save = FALSE, path = NULL){

@@ -29,7 +29,7 @@ classifies each match by functional category, and outputs a structured data fram
 The function automatically filters annotation entries based on a curated catalog \code{gene_list.txt}
 of RNAi machinery genes, stored in the package's \code{extdata} directory.
 Input validation is internally performed through \code{validate.inputs()} to ensure consistent formats.
-Different contigs with the same UniProt name annotation will be kept with a prefix ".1, .2, \link{...}".
+Different contigs with the same UniProt name annotation will be kept with a prefix ".1, .2, ...".
 }
 \examples{
 \dontrun{

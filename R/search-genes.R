@@ -31,6 +31,9 @@
 #' }
 #'
 #' @importFrom dplyr select
+#' @importFrom utils read.table
+#' @importFrom utils make.unique
+#'
 #' @export
 
 search.rnai <- function(annotation_df, column) {

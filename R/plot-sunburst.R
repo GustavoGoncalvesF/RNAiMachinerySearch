@@ -26,8 +26,11 @@
 #' sunburst.plot(raw_rnai_hits, save = TRUE, path = "my_sunburst.html")
 #' }
 #'
-#' @importFrom plotly plot_ly layout
+#' @importFrom plotly plot_ly layout %>%
 #' @importFrom htmlwidgets saveWidget
+#' @importFrom stats setNames
+#' @importFrom utils read.csv
+#'
 #' @export
 
 sunburst.plot <- function(rnai_hits, save = FALSE, path = NULL){

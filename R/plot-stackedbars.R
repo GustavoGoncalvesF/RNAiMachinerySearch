@@ -34,9 +34,13 @@
 #' stackedbars_plot <- stackedbars.plot(filtered_rnai_hits, expression_df, groups_df)
 #' }
 #'
-#' @importFrom plotly plot_ly layout
+#' @importFrom plotly plot_ly layout %>%
 #' @importFrom openxlsx write.xlsx
 #' @importFrom htmlwidgets saveWidget
+#' @importFrom tidyr pivot_longer
+#' @importFrom utils read.csv
+#' @importFrom stats aggregate setNames
+#'
 #' @export
 
 stackedbars.plot <- function(rnai_hits, expression_df, groups_df, save_table = FALSE, table_path = NULL, save_plot = FALSE, plot_path = NULL) {

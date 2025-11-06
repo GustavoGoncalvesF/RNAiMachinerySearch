@@ -7,6 +7,8 @@
 #'   \code{\link{search.rnai}} or \code{\link{expr.filter}}. Must contain the
 #'   column \code{"Category"}.
 #'
+#' @importFrom stats setNames
+#'
 #' @keywords internal
 
 report.machinery <- function(rnai_hits) {
