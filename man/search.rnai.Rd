@@ -12,7 +12,7 @@ search.rnai(annotation_df, column)
 \item{column}{A character string specifying the column name within \code{annotation_df} where UniProt annotation names are stored.}
 }
 \value{
-A data frame (\code{raw_rnai_hits}) containing:
+A data frame \code{raw_rnai_hits} containing:
 \itemize{
 \item \strong{GeneID}: The gene or contig identifier from the input annotation.
 \item \strong{ProteinAnnotation}: The matched UniProt protein name.
@@ -26,7 +26,7 @@ The function compares UniProt annotation names against a curated catalog of RNAi
 classifies each match by functional category, and outputs a structured data frame ready for downstream analyses.
 }
 \details{
-The function automatically filters annotation entries based on a curated catalog (\code{gene_list.txt})
+The function automatically filters annotation entries based on a curated catalog \code{gene_list.txt}
 of RNAi machinery genes, stored in the package's \code{extdata} directory.
 Input validation is internally performed through \code{validate.inputs()} to ensure consistent formats.
 Different contigs with the same UniProt name annotation will be kept with a prefix ".1, .2, \link{...}".
@@ -35,7 +35,7 @@ Different contigs with the same UniProt name annotation will be kept with a pref
 \dontrun{
 # Example usage:
 annotation <- read.table("annotation_report.xls")
-rnai_hits <- search.rnai(annotation_df = annotation, column = "Protein.names")
+rnai_hits <- search.rnai(annotation_df = annotation, column = "Top_BLASTX_hit")
 }
 
 }

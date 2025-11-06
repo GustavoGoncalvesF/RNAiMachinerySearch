@@ -1,7 +1,34 @@
-# This function plots a sunburst chart to represent founded genes in each category, plus his functions in RNAi machinery
-
-library(plotly)
-library(htmlwidgets)
+#' @title Plot an Interactive Sunburst Chart of RNAi Hits
+#'
+#' @description
+#' This function generates an interactive sunburst chart to visualize the distribution
+#' of RNAi core genes by category and function within a transcriptome. The chart allows
+#' users to explore each RNAi category and its associated genes in a hierarchical structure.
+#'
+#' @param rnai_hits A data frame containing RNAi hits, typically obtained from
+#'   \code{\link{search.rnai}} or \code{\link{expr.filter}}. Must contain the columns
+#'   "ProteinAnnotation", "Category", and "Function".
+#' @param save Logical; if \code{TRUE}, the plot will be saved as an HTML file.
+#'   Default is \code{FALSE}.
+#' @param path Character string specifying the file path to save the HTML file.
+#'   If \code{NULL}, the plot will be saved in the current working directory
+#'   with the default name "sunburst_plot.html".
+#'
+#' @return A \code{plotly} object representing the interactive sunburst chart.
+#'
+#' @examples
+#' \dontrun{
+#' # Generate and display sunburst chart
+#' raw_rnai_hits <- search.rnai(annotation_df = annotation, column = "Top_BLASTX_hit")
+#' sunburst_plot <- sunburst.plot(raw_rnai_hits)
+#'
+#' # Save the plot
+#' sunburst.plot(raw_rnai_hits, save = TRUE, path = "my_sunburst.html")
+#' }
+#'
+#' @importFrom plotly plot_ly layout
+#' @importFrom htmlwidgets saveWidget
+#' @export
 
 sunburst.plot <- function(rnai_hits, save = FALSE, path = NULL){
   # Input validation
@@ -27,7 +54,7 @@ sunburst.plot <- function(rnai_hits, save = FALSE, path = NULL){
   data$color <- c(cat_colors, prot_colors)
 
   # Ploting with plotly
-  plot <- plot_ly(
+  plot <- plotly::plot_ly(
     data,
     labels = ~labels,
     parents = ~parents,
@@ -37,7 +64,7 @@ sunburst.plot <- function(rnai_hits, save = FALSE, path = NULL){
     hoverinfo = "text+label",
     marker = list(colors = ~color)
    ) %>%
-  layout(title = "Distribution of genes by categories")
+    plotly::layout(title = "Distribution of genes by categories")
 
   # Export plot
   if (isTRUE(save)) {

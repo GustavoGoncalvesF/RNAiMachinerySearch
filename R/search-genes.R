@@ -6,10 +6,10 @@
 #' classifies each match by functional category, and outputs a structured data frame ready for downstream analyses.
 #'
 #' @param annotation_df A data frame containing functional annotation results (e.g., Trinotate output).
-#' @param column A character string specifying the column name within `annotation_df` where UniProt annotation names are stored.
+#' @param column A character string specifying the column name within \code{annotation_df} where UniProt annotation names are stored.
 #'
 #' @return
-#' A data frame (`raw_rnai_hits`) containing:
+#' A data frame \code{raw_rnai_hits} containing:
 #' \itemize{
 #'   \item \strong{GeneID}: The gene or contig identifier from the input annotation.
 #'   \item \strong{ProteinAnnotation}: The matched UniProt protein name.
@@ -18,16 +18,16 @@
 #' }
 #'
 #' @details
-#' The function automatically filters annotation entries based on a curated catalog (`gene_list.txt`)
-#' of RNAi machinery genes, stored in the package's `extdata` directory.
+#' The function automatically filters annotation entries based on a curated catalog \code{gene_list.txt}
+#' of RNAi machinery genes, stored in the package's \code{extdata} directory.
 #' Input validation is internally performed through \code{validate.inputs()} to ensure consistent formats.
-#' Different contigs with the same UniProt name annotation will be kept with a prefix ".1, .2, [...]".
+#' Different contigs with the same UniProt name annotation will be kept with a prefix ".1, .2, ...".
 #'
 #' @examples
 #' \dontrun{
 #' # Example usage:
 #' annotation <- read.table("annotation_report.xls")
-#' rnai_hits <- search.rnai(annotation_df = annotation, column = "Protein.names")
+#' rnai_hits <- search.rnai(annotation_df = annotation, column = "Top_BLASTX_hit")
 #' }
 #'
 #' @importFrom dplyr select
@@ -42,7 +42,7 @@ search.rnai <- function(annotation_df, column) {
   validate.inputs(annotation_df = annotation_df, column = column)
 
   # Pick up the functional annotation column
-  # col_data <- annotation_df[[column]]
+  col_data <- annotation_df[[column]]
 
   # Looking for matches between catalog and annotations
   matches <- lapply(names(catalog), function(cat) {
