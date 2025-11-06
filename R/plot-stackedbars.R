@@ -34,9 +34,14 @@
 #' stackedbars_plot <- stackedbars.plot(filtered_rnai_hits, expression_df, groups_df)
 #' }
 #'
-#' @importFrom plotly plot_ly layout
+#' @importFrom plotly plot_ly layout %>%
 #' @importFrom openxlsx write.xlsx
 #' @importFrom htmlwidgets saveWidget
+#' @importFrom tidyr pivot_longer
+#' @importFrom utils read.csv
+#' @importFrom stats setNames
+#' @importFrom dplyr group_by summarise across ungroup where
+#'
 #' @export
 
 stackedbars.plot <- function(rnai_hits, expression_df, groups_df, save_table = FALSE, table_path = NULL, save_plot = FALSE, plot_path = NULL) {
@@ -77,7 +82,11 @@ stackedbars.plot <- function(rnai_hits, expression_df, groups_df, save_table = F
   grouped_expr$Category <- expr_sub$Category
 
   # Merge by category (add all contigs by categories)
-  agg_df <- aggregate(. ~ Category, data = grouped_expr, sum)
+  Category <- NULL
+  agg_df <- grouped_expr %>%
+    dplyr::group_by(Category) %>%
+    dplyr::summarise(dplyr::across(where(is.numeric), sum, .names = "{.col}")) %>%
+    dplyr::ungroup()
 
   # Adapt data to long format input
   agg_long <- tidyr::pivot_longer(
@@ -94,9 +103,9 @@ stackedbars.plot <- function(rnai_hits, expression_df, groups_df, save_table = F
   # Ploting with plotly
   plot <- plotly::plot_ly(
     agg_long,
-    x = ~Group,
-    y = ~Expression,
-    color = ~Category,
+    x = ~.data$Group,
+    y = ~.data$Expression,
+    color = ~.data$Category,
     colors = category_colors,
     type = "bar"
   ) %>%
