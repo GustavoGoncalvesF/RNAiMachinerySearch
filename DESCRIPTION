@@ -1,9 +1,13 @@
 Package: RNAiMachinerySearch
-Title: RNAi Machinery Identifier
+Title: RNAi Machinery Search
 Version: 0.1.0
 Authors@R: 
     person("Gustavo", "Gonçalves", , "gustavoffg@estudante.ufscar.br", role = c("aut", "cre"))
-Description: Identify RNAi machinery core genes in annotate tables.
+Description: RNAiMachinerySearch is a fast and optimized R package for screening genes involved in RNA interference (RNAi) in eukaryotes. 
+It provides tools to analyze transcriptomic datasets annotated with UniProtKB/Swiss-Prot from RNA-seq experiments, 
+identifying core RNAi machinery components and classifying them into functional categories such as Dicer-like, Argonaute/Piwi, 
+dsRNA-binding, dsRNA-transport, and auxiliary RISC-associated proteins. The package enables assessment of gene expression profiles 
+across experimental groups and produces ready-to-use visualizations for publications or presentations.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Imports: dplyr, tidyr, plotly, ComplexHeatmap, edgeR, openxlsx, htmlwidgets
