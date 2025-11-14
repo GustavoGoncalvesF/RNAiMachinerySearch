@@ -5,19 +5,18 @@ file1 <- file.path("C:/Users/gugam/Documents/Data/mahanarva_annotation_report.xl
 file1 <- file.path("C:/Users/gugam/Documents/Data/metisa_annotation_report.xlsx")
 file1 <- file.path("C:/Users/gugam/Documents/Data/highfive_annotation_report.xlsx")
 file1 <- file.path("C:/Users/gugam/Documents/Data/centropomus_annotation_report.tsv")
-file1 <- system.file("extdata", "partial_table1.xls", package = "RNAiMachinerySearch")
-file1 <- system.file("extdata", "partial_table2.xls", package = "RNAiMachinerySearch")
+file1 <- system.file("extdata", "annotation_report_example.xls", package = "RNAiMachinerySearch")
 
 # Input annotation tables
 annotation_df <- read.table(file1, sep = "\t", header = TRUE, quote = "", comment.char = "", fill = TRUE)
 annotation_df <- readxl::read_excel(file1, sheet = 1) # < for xlsxs
 
 # Input expression matrix
-file2 <- file.path("C:/Users/gugam/Documents/Data/raw_counts.txt")
+file2 <- system.file("extdata", "raw_counts_example.txt", package = "RNAiMachinerySearch")
 expression_df <- read.table(file2, header = TRUE, row.names = 1, sep = " ", stringsAsFactors = FALSE)
 
 # Input groups file
-file3 <- system.file("extdata", "samples.txt", package = "RNAiMachinerySearch")
+file3 <- system.file("extdata", "samples_grouping_example.txt", package = "RNAiMachinerySearch")
 groups_df <- read.table(file3, header = TRUE, sep = ",", stringsAsFactors = FALSE)
 
 # Testing search function
@@ -41,6 +40,7 @@ stackedbars.plot(filtered_rnai_hits, expression_df, groups_df, save_plot = TRUE,
 heatmap.plot(raw_rnai_hits, expression_df)
 heatmap.plot(filtered_rnai_hits, expression_df)
 heatmap.plot(filtered_rnai_hits, expression_df, normalize = "logCPM")
+heatmap.plot(raw_rnai_hits, expression_df, normalize = "zscore")
 heatmap.plot(filtered_rnai_hits, expression_df, normalize = "zscore")
 heatmap.plot(filtered_rnai_hits, expression_df, normalize = "none")
 heatmap.plot(raw_rnai_hits, expression_df, normalize = "zscore", save = TRUE, path = "C:/Users/gugam/Documents/export/unfiltered_heatmap_examples.png")
