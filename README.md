@@ -33,9 +33,9 @@ The package workflow allows you to:
 
 ## User's Guide
 
-A detailed User's Guide is available in PDF format:
+A detailed User's Guide is available here:
 
-[Download Users Guide (PDF)](docs/RNAiMachinerySearchUsersGuide.pdf)
+[Download Users Guide (PDF)](inst/docs/RNAiMachinerySearchUsersGuide.pdf)
 
 ## Quick Example
 ```r
