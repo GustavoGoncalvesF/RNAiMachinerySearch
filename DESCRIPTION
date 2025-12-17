@@ -8,8 +8,7 @@ Description: RNAiMachinerySearch is a fast and optimized R package for screening
   identifying core RNAi machinery components and classifying them into functional categories such as Dicer-like, Argonaute/Piwi, 
   dsRNA-binding, dsRNA-transport, and auxiliary RISC-associated proteins. The package enables assessment of gene expression profiles 
   across experimental groups and produces ready-to-use visualizations for publications or presentations.
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+License: MIT + file LICENSE
 Imports: dplyr, tidyr, plotly, ComplexHeatmap, edgeR, openxlsx, htmlwidgets
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
