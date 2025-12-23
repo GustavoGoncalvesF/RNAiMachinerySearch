@@ -1,9 +1,15 @@
+![GitHub release](https://img.shields.io/github/v/release/GustavoGoncalvesF/RNAiMachinerySearch?color=lightgrey)
+![License](https://img.shields.io/badge/license-MIT-lightgrey)
+![INPI](https://img.shields.io/badge/INPI-registered-lightgrey)
+
 # RNAiMachinerySearch
 
 RNAiMachinerySearch is an R package designed to streamline the identification and exploration of core genes involved in RNA interference (RNAi).  
 This machinery is essential for gene silencing mediated by double-stranded RNA (dsRNA) and can help researchers understand and manipulate RNAi pathways in their organisms of interest.  
 
 With RNAiMachinerySearch, you can quickly screen, filter, and visualize RNAi-related genes from transcriptomic datasets, facilitating downstream analyses and functional studies.
+
+Software registered at INPI (Brazil), Certificate nº BR512025006879-4.
 
 ![Logo](https://github.com/GustavoGoncalvesF/RNAiMachinerySearch/blob/master/man/figures/logo.png)
 
