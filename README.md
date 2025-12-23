@@ -5,6 +5,8 @@ This machinery is essential for gene silencing mediated by double-stranded RNA (
 
 With RNAiMachinerySearch, you can quickly screen, filter, and visualize RNAi-related genes from transcriptomic datasets, facilitating downstream analyses and functional studies.
 
+Software registered at INPI (Brazil), Certificate nº BR512025006879-4.
+
 ![Logo](https://github.com/GustavoGoncalvesF/RNAiMachinerySearch/blob/master/man/figures/logo.png)
 
 ## Installation
