@@ -1,6 +1,5 @@
-![GitHub release](https://img.shields.io/github/v/release/GustavoGoncalvesF/RNAiMachinerySearch?color=lightgrey)
-![License](https://img.shields.io/badge/license-MIT-lightgrey)
-![INPI](https://img.shields.io/badge/INPI-registered-lightgrey)
+![GitHub release](https://img.shields.io/github/v/release/GustavoGoncalvesF/RNAiMachinerySearch?color=informational)
+![License](https://img.shields.io/badge/license-MIT-success)
 
 # RNAiMachinerySearch
 
